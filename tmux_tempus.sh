@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# files created by tmux-tempus
 PID_FILE=/tmp/tmux_tempus_pid
 TIME_FILE=/tmp/tmux_tempus
 TMUX_FILE=/tmp/tmux_tempus_bar
