@@ -1,10 +1,12 @@
 # tmux-tempus
 
-A timer for tmux written in bash.
+A timer for tmux written in POSIX shell.
 
 ## Why did I make this?
 
-I wanted a timer to track work time, and I wanted it on my tmux bar. Other things I wanted was that the timer was kept hidden while it is counting, only showing the current count when it is stopped. I though this would be ideal for a timer to count work time.
+I wanted a timer to track work time, and I wanted it on my tmux bar. Other things I wanted was that the timer was kept hidden while it is counting, only showing the current count when it is stopped. I thought this would be ideal for a timer to count work time.
+
+I also wanted minimal dependencies - the only external requirement is GNU `date`.
 
 ## Usage
 
@@ -24,11 +26,11 @@ The tmux bar will show the contents of a file with the current count.
 2. Add the following lines to your tmux config, replacing `<start key>`, `<pause key>` and `<start-from key>`, as well as `<tmux_tempus.sh path>`:
 
    ```bash
-   bind <start key> run-shell 'bash <tmux_tempus.sh path> start > /dev/null'\; refresh-client -S
+   bind <start key> run-shell 'sh <tmux_tempus.sh path> start > /dev/null'\; refresh-client -S
 
-   bind <pause key> run-shell 'bash <tmux_tempus.sh path> pause > /dev/null'\; refresh-client -S
+   bind <pause key> run-shell 'sh <tmux_tempus.sh path> pause > /dev/null'\; refresh-client -S
 
-   bind-key <start-from key> command-prompt -p "Start Timer from:" 'run-shell "bash <tmux_tempus.sh path> start '%1' > /dev/null"'\; refresh-client -S
+   bind-key <start-from key> command-prompt -p "Start Timer from:" 'run-shell "sh <tmux_tempus.sh path> start '%1' > /dev/null"'\; refresh-client -S
    ```
 
    I like to use `S`, `g` and `P` as start, pause and start-from keys. That way I can use `<prefix>+S` to start and stop a count, `<prefix>+g` to pause and resume, and `<prefix>+P` to start a count from a specific time.
