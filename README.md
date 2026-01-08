@@ -17,23 +17,30 @@ The tmux bar will show the contents of a file with the current count.
 
 ![tmux-tempus_overview](https://user-images.githubusercontent.com/29887885/146976213-92706d32-c1be-4297-a1e1-f7c80d7a5731.gif)
 
-## Installation 
+## Installation
 
 1. Clone this repo or save `tmux_tempus.sh` somewhere (e.g. your tmux config directory)
-2. Add the following lines to your tmux config, replacing `<start key>`, `<pause key>` and `<start-from key>`, as well as `<tmux_tempus.sh path>`
 
-    `bind <start key> run-shell 'bash <tmux_tempus.sh path> start > /dev/null'\; refresh-client -S`
-    
-    `bind <pause key> run-shell 'bash <tmux_tempus.sh path> pause > /dev/null'\; refresh-client -S`
+2. Add the following lines to your tmux config, replacing `<start key>`, `<pause key>` and `<start-from key>`, as well as `<tmux_tempus.sh path>`:
 
-    `bind-key <start-from key> command-prompt -p "Start Timer from:" 'run-shell "bash <tmux_tempus.sh path> start '%1' > /dev/null"'\; refresh-client -S`
+   ```bash
+   bind <start key> run-shell 'bash <tmux_tempus.sh path> start > /dev/null'\; refresh-client -S
 
-    I like to use `S`, `g` and `P` as start, pause and start-from keys. That way I can use `<prefix>+S` to start and stop a count, `<prefix>+g` to pause and resume, and `<prefix>+P>` to start a count from a spedific time.
+   bind <pause key> run-shell 'bash <tmux_tempus.sh path> pause > /dev/null'\; refresh-client -S
 
-3. Add the timer file to the status bar. The best way is to add the variable `wg_timer` to your tmux config and putting it in your status bar
+   bind-key <start-from key> command-prompt -p "Start Timer from:" 'run-shell "bash <tmux_tempus.sh path> start '%1' > /dev/null"'\; refresh-client -S
+   ```
 
-    `wg_timer="#[reverse]#(tail /tmp/tmux_tempus_bar)#[noreverse]"`
+   I like to use `S`, `g` and `P` as start, pause and start-from keys. That way I can use `<prefix>+S` to start and stop a count, `<prefix>+g` to pause and resume, and `<prefix>+P` to start a count from a specific time.
 
-    An example status bar config, including only tmux-tempus, date and time:
+3. Add the timer file to the status bar. The best way is to add the variable `wg_timer` to your tmux config and putting it in your status bar:
 
-    `set -g status-right "$wg_timer %Y-%m-%d %H:%M#"`
+   ```bash
+   wg_timer="#[reverse]#(tail /tmp/tmux_tempus_bar)#[noreverse]"
+   ```
+
+   An example status bar config, including only tmux-tempus, date and time:
+
+   ```bash
+   set -g status-right "$wg_timer %Y-%m-%d %H:%M#"
+   ```
